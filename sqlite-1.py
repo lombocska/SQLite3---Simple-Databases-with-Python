@@ -28,10 +28,19 @@ def dynamic_data_entry():
     conn.commit()
 
 
-create_table()
-# data_entry()
-for i in range(10):
-    dynamic_data_entry()
-    time.sleep(1)
+def read_from_db():
+    c.execute("SELECT * FROM stuffToPlot WHERE value=3 ")
+    # data = c.fetchall()
+    # print(data)
+    for row in c.fetchall():
+        print(row[0])
+
+
+# create_table()
+# # data_entry()
+# for i in range(10):
+#     dynamic_data_entry()
+#     time.sleep(1)
+read_from_db()
 c.close()
 conn.close()
