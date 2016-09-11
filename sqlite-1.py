@@ -1,7 +1,12 @@
+#!/usr/bin/env python
 import sqlite3
 import time
 import datetime
 import random
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from matplotlib import style
+style.use('fivethirtyeight')
 
 conn = sqlite3.connect('tutorial.db')
 c = conn.cursor()
@@ -33,7 +38,22 @@ def read_from_db():
     # data = c.fetchall()
     # print(data)
     for row in c.fetchall():
-        print(row[0])
+        print(row)
+
+
+def graph_data():
+    c.execute("SELECT unix, value FROM stuffToPlot")
+    dates = []
+    values = []
+    for row in c.fetchall():
+        # print(row[0])
+        # print(datetime.datetime.fromtimestamp(row[0]))
+
+        dates.append(datetime.datetime.fromtimestamp(row[0]))
+        values.append(row[1])
+
+    plt.plot_date(dates, values, '-')
+    plt.show()
 
 
 # create_table()
@@ -41,6 +61,7 @@ def read_from_db():
 # for i in range(10):
 #     dynamic_data_entry()
 #     time.sleep(1)
-read_from_db()
+# read_from_db()
+graph_data()
 c.close()
 conn.close()
