@@ -56,12 +56,36 @@ def graph_data():
     plt.show()
 
 
+def del_and_update():
+    # c.execute("SELECT * FROM stuffToPlot")
+    # [print(row) for row in c.fetchall()]
+
+    # update
+    # c.execute("UPDATE stuffToPlot SET value = 99 WHERE value=8")
+    # conn.commit()
+    # c.execute("SELECT * FROM stuffToPlot")
+    # [print(row) for row in c.fetchall()]
+
+    # delete
+    # c.execute("DELETE FROM stuffToPlot WHERE value=99")
+    # conn.commit()
+    # print(50*'#')
+
+    # deleete with limit
+    c.execute("SELECT * FROM stuffToPlot WHERE value=3.0")
+    [print(row) for row in c.fetchall()]
+
+    c.execute("SELECT * FROM stuffToPlot WHERE value=3.0")
+    print(len(c.fetchall()))
+
+
 # create_table()
 # # data_entry()
 # for i in range(10):
 #     dynamic_data_entry()
 #     time.sleep(1)
 # read_from_db()
-graph_data()
+# graph_data()
+del_and_update()
 c.close()
 conn.close()
